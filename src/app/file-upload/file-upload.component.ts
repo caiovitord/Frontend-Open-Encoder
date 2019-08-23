@@ -23,14 +23,19 @@ export class FileUploadComponent implements OnInit {
 
   onFileChange(event){
     this.fileInput = event.target.files[0];
-    if (this.fileInput /*&& this.getFileExtension(this.fileInput.name)*/) {
-      const formData = new FormData();
-      formData.append('file', this.fileInput);
-      this.fileUploadService.uploadDocument(formData)
-    }
+
     console.log(this.fileInput);
   }
 
+  onClickSend(){
+    if (this.fileInput /*&& this.getFileExtension(this.fileInput.name)*/) {
+      const formData = new FormData();
+      formData.append('file', this.fileInput);
+      this.fileUploadService.uploadDocument(formData).subscribe((res)=>{
+        console.log(res);
+      })
+    }
+  }
 
 
 }
