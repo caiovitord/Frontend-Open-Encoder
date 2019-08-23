@@ -15,7 +15,7 @@ export class FileUploadService {
 
   uploadDocument(formData: FormData) {
     //const file:any = formData.get('file');
-    return this.httpClient.post(`${this.url}/file`, formData);
+    return this.httpClient.post(`${this.url}/file`, formData, { responseType: 'text' });
   }
 
 }

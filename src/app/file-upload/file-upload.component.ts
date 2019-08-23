@@ -1,3 +1,4 @@
+import { EncoderService } from './../services/encoder.service';
 import { FileUploadService } from './../services/file-upload.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,9 +14,11 @@ export class FileUploadComponent implements OnInit {
   acceptedFormats = [
 
   ];
+  fileResult: string;
 
   constructor(
-    private fileUploadService: FileUploadService
+    private fileUploadService: FileUploadService,
+    private encoderService: EncoderService
   ) { }
 
   ngOnInit() {
@@ -33,8 +36,15 @@ export class FileUploadComponent implements OnInit {
       formData.append('file', this.fileInput);
       this.fileUploadService.uploadDocument(formData).subscribe((res)=>{
         console.log(res);
+        this.fileResult = res;
       })
     }
+  }
+
+  onClickEncode(){
+    this.encoderService.requestEncoding(this.fileResult).subscribe((res)=>{
+      console.log(res);
+    })
   }
 
 

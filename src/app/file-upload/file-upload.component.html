@@ -1,3 +1,8 @@
-<input accept="application/pdf" type="file" enctype="multipart/form-data" name="file"
+<input accept="video/*" type="file" enctype="multipart/form-data" name="file"
 (change)="onFileChange($event)" id="file" class="inputfile" />
 <button (click)="onClickSend()">Send</button>
+
+<div *ngIf="fileResult">
+    <h4>Seu arquivo foi enviado!</h4>
+    <button (click)="onClickEncode()" >Encode</button>
+</div>
