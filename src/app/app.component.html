@@ -1,108 +1,106 @@
 <app-file-upload *ngIf="false"></app-file-upload>
 <app-video-player *ngIf="false"></app-video-player>
-<div >
+
+<div class="container">
   <!-- Toolbar -->
   <div class="toolbar" role="banner">
     <img width="40" alt="Logo"
       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAYAAAA8AXHiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyZjRhNjAxNy1lMmFkLTkwNDgtOTg2Ni1hNzJhNjI1Zjc0OWUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QjM2QzQxRkNDNTUxMTFFOUFEOTVFNjU0RUZBQjlBMTIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QjM2QzQxRkJDNTUxMTFFOUFEOTVFNjU0RUZBQjlBMTIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MTlkMmY3ODktZmUxMS1hMjRiLWEyNjktZjdhZjdlY2ExODBjIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjJmNGE2MDE3LWUyYWQtOTA0OC05ODY2LWE3MmE2MjVmNzQ5ZSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PiRJwqMAAAT7SURBVHja7J3daxNZGIfPxMb4ERtDqdVYu36s2lajrqvgN3u9C4IiuPf7T0jBW73QP8ArwYtCQbCiWARBBMEbYUVkl/qJ1qqIuIYuSjVJx/fdvMHgNrV14jiTPg/86My0NOmZp+85OXOS8XzfdwCNJkETAGIBYgFiASAWIBYgFgBiAWIBYgEgFkSdljAfzPf9BNcmv2MVSSQmwnosL8wT3dfXd2xwcPAApzh8crnc86GhoV9TqdT7pqtYIyMjXcPDw92c5vApFAqLpYh4TTnGSiaTRU7x9yGsSsXgHRALEAsAsQCxIGa0RPA5lS1eE7VzdbJwwv62kqRox+dKFn3FP7lvv8e3tkoi1tQclZyLeTX1PxNowto6LVkiWSVZJ+mR5O34THkoOWi/v1NyQTIfseozIrnbBFVKK1GXydMr2ShZL1khabfvB0Hnpe7Y9pjJS8WagmTMBEpJlkl+lGwwiXqtKnV8wzaudn9Few6MsWKKZ6J01VSgbqtCOckCmgixvkTGuqy1NgbqMYFWSrI0D2JNpxvTarPGqlDeBtVrrHtjOgaxZkSr5LSJ1Ek3hliNYqFkfwxfKMSG2VrqdZ7pLacfsQCxICR0QrS6cPIdYyxoFDodMmCCpV3EJkkRK77oXNthukJgjAWAWIBYgFgAiAWIBYgFgFiAWIBYAIgFUYKL0PFlVHJE8kGyVHLCRWiFA2LFl4Kk37b13dXHoyQWXWG8hzHVNfsLGWMBg3cAxALEAsQCQCxALEAsAMQCxALEAkAsQCxALADEAsQCxAJALEAsQCwAxALEAsSaHeidKx67CH5+OmLFl78ke1zlppZbJRdpEsQKyr+SQ5IbVq30FsK/S/6maRArCOclw58dU8FO0TSIFYSbdY7/SdMgVhCKdY6XaBrECsKGOsfX0zSIFYSDkrZJjv9B0yBWEPTG42dc5YPMFL1X9EnJPppmZvDBa//nN8ktyW3JSrpBxGokS2uqFtAVAmIBYgEgFiAWIBYAYgFiAWIBIBYgFiAWAGIBYgFiASAWIBYgFgBiAWIBYgEgVrMy4T59JMDbqD053v4VX1ZIBiRlySJJCrGgEWQkh+kKgTEWAGIBYgFiASAWIBYgFgBiAWIBYgEgFkQJLkLHl1HJEVdZOtMhOeEitMIBseJLQdJv2+2S41ESi64w3sOYpG2nGWMBg/cmxpPM4fQjVqPR5bzjnH4G743mlavc93m7q9yASb/2SOahBGIFQe9Sf8/Sb5V7tWSbCbfDRFuAIogVBH0r1QPLgB1T0X420XZKul3l3TCAWIF4ZDlr+z+YaLtMNq1orTQTYgXlieWc7Xda16mi7Zb0ShbTTIgVlFHLedtfLtli1Uxly0uyiAVBeWa5ZPvLJJsle22MtslNfr9pxIIZ8cJy2fY7TK7qiwGtbu2IBUF5KblicSZVvqbr/EmyBLEgKDpJe9XirJvM17zq1G40h1jToFwuJ6fxY7P1Gt5ryTWLs1eYKppO1u6zrrOz5ufn1mx7XzqXpVKppWnFSqfTTzOZzH1XmZCcDJ0Bf0Mx+w9db3Xdoov4WmtE+0Uy33261qvXPv9xU1wpyGazbzzPC+3Je77vh/ZgY2NjLePj4ypzvQfVv7xoDQVTo2K9t3/SOdaV1jUnkUiU29raXotcftOJBbMHFvoBYgFiAWIBIBYgFiAWAGIBYgFiASAWRJ6PAgwAgv7AQyJ1+KoAAAAASUVORK5CYII=" />
-    <h2>Open Encoder</h2>
+    <h2 style="font-weight: 200!important;">Open Encoder</h2>
     <div class="spacer"></div>
   </div>
-  
+
   <div class="content" role="main">
-  
-  
-  
-  
+
+
+
+
     <!-- Resources -->
     <h1>Bem-vindo</h1>
-    <img src="/assets/logo.png">
-        
+    <img style="width: 300px; height: 300px;" src="/assets/logo.png">
 
-    <mat-card>Simple card</mat-card>
-  
+
+    <mat-card class="text-center">
+
+      <mat-card-content>
+        <h4>O Open Encoder é uma solução gratuita para todos aqueles que desejam converter os seus vídeos para um
+          formato
+          web.</h4>
+        <p>Com a nossa API de conversão, você pode enviar um link para que todos os seus amigos vejam os seus videos
+          diretamente do navegador do celular sem precisar de baixar
+          nenhum aplicativo!</p>
+        <h4>É só enviar o seu vídeo e pegar o seu link, simples assim !</h4>
+      </mat-card-content>
+    </mat-card>
+
     <div class="card-container">
-      <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z" /></svg>
-  
-        <span>Learn Angular</span>
-  
+      <a class="card c-h" target="_blank" rel="noopener" href="https://angular.io/tutorial">
+        <i class="fa mr-2 nml-1 fa-3x  fa-upload"></i>
+        <h2>Enviar vídeo</h2>
+
         <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" /></svg> </a>
-  
-      <a class="card" target="_blank" rel="noopener" href="https://angular.io/cli">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" /></svg>
-  
-        <span>CLI Documentation</span>
-  
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" /></svg>
-      </a>
-  
-      <a class="card" target="_blank" rel="noopener" href="https://blog.angular.io/">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path
-            d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z" />
-          </svg>
-  
-        <span>Angular Blog</span>
-  
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" /></svg>
-      </a>
-  
+
     </div>
-  
+
+    <div class="card-container">
+      <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
+        <i class="fa fa-3x mr-1 fa-github"></i>
+        <span>Backend no GitHub</span>
+
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" /></svg> </a>
+
+      <a class="card" target="_blank" rel="noopener" href="https://angular.io/cli">
+        <i class="fa fa-3x mr-1 fa-github"></i>
+        <span>Frontend no GitHub</span>
+
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" /></svg>
+      </a>
+    </div>
+
     <!-- Links -->
     <div class="card-container">
-      <a class="circle-link" title="Animations" href="https://angular.io/guide/animations" target="_blank" rel="noopener">
-  
+      <a class="circle-link" title="Animations" href="https://angular.io/guide/animations" target="_blank"
+        rel="noopener">
+
       </a>
-  
+
       <a class="circle-link" title="CLI" href="https://cli.angular.io/" target="_blank" rel="noopener">
-  
+
       </a>
-  
+
       <a class="circle-link" title="Augury" href="https://augury.rangle.io/" target="_blank" rel="noopener">
-  
+
       </a>
-  
+
       <a class="circle-link" title="Protractor" href="https://www.protractortest.org/" target="_blank" rel="noopener">
       </a>
-  
+
       <a class="circle-link" title="Find a Local Meetup" href="https://www.meetup.com/find/?keywords=angular"
         target="_blank" rel="noopener">
       </a>
-  
+
       <a class="circle-link" title="Join the Conversation on Gitter" href="https://gitter.im/angular/angular"
         target="_blank" rel="noopener">
       </a>
     </div>
-  
-  
-  
+
+
+
     <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677"
       viewBox="0 0 2611.084 485.677">
       <path id="Path_39" data-name="Path 39"
         d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z"
         transform="translate(142.69 -634.312)" fill="#eee" />
     </svg>
-  
+
   </div>
-  
+
   <router-outlet></router-outlet>
 
 
 
-<!-- Footer -->
-<footer  id="footer" class="page-footer font-small blue">
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center width py-3">Desenvolvido por Caio Vitor Gobira Damasceno
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->  </div>
+</div>
+<app-footer></app-footer>

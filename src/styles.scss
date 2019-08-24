@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import './custom-theme.scss';
+
+
+.ligth{
+font: small-caption !important;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.mr-1{
+    margin-right: 5px;
+}
+
+.mr-2{
+    margin-right: 10px;
+}
+
+.nml-1{
+    margin-left: -15px;
+}
