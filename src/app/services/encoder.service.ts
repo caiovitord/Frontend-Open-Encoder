@@ -7,6 +7,7 @@ import { APP_CONFIGURATION } from 'src/environments/configuration';
 })
 export class EncoderService {
 
+
   constructor(private httpClient: HttpClient) { 
 
   }
@@ -19,6 +20,10 @@ export class EncoderService {
 
   getEncoding(encodingId) {
     return this.httpClient.get(`${this.url}/encoder/${encodingId}`);
+  }
+
+  gerarManifest(encodingId: any) {
+    return this.httpClient.post(`${this.url}/encoder/${encodingId}/create-manifest`, {});
   }
 
 }

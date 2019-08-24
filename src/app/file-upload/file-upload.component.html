@@ -17,3 +17,8 @@
     <h4>Checando os dados do seu encoding:</h4>
     <h4 *ngFor="let enc of encodingDataUpdate; index as i" >{{i + 1}} - {{enc | json }}</h4>
 </div>
+
+<div *ngIf="encodingFinished">
+    <h1>Seu encoding finalizou</h1>
+    <button (click)="onClickGerarManifest()" >Gerar manifest</button>
+</div>

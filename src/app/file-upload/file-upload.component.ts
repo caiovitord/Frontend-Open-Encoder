@@ -22,6 +22,7 @@ export class FileUploadComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   statusText: string;
   encodingDataUpdate: any;
+  encodingFinished: boolean;
 
   constructor(
     private fileUploadService: FileUploadService,
@@ -56,23 +57,37 @@ export class FileUploadComponent implements OnInit, OnDestroy {
   }
 
   onClickEncode() {
-    this.encoderService.requestEncoding(this.fileResult).subscribe((res) => {
+    this.encoderService.requestEncoding(this.fileResult).subscribe((res :any) => {
       this.createdEncoding = res;
+      
       localStorage.setItem('createdEncoding', JSON.stringify(res));
+      localStorage.setItem('path', res.outputPath);
 
 
       this.encodingDataUpdate = []; 
 
-      this.subscription = timer(0, 4000).pipe(
-        switchMap(() => this.encoderService.getEncoding(this.createdEncoding.encodingId))
-      ).subscribe(result => {
-        console.log(result);
-        this.encodingDataUpdate.push(result);
+      this.startStatusWatcher();
 
-      });
+    });
+  }
+  startStatusWatcher() {
+    this.subscription = timer(0, 4000).pipe(
+      switchMap(() => this.encoderService.getEncoding(this.createdEncoding.encodingId))
+    ).subscribe((result:any) => {
+      console.log(result);
+      this.encodingDataUpdate.push(result);
 
+      if(result.status === 'FINISHED'){
+        this.encodingFinished = true;
+        this.subscription.unsubscribe();
+      }
     });
   }
 
 
+  onClickGerarManifest(){
+    this.encoderService.gerarManifest(this.createdEncoding.encodingId).subscribe((res)=>{
+      console.log(res);
+    });
+  }
 }
