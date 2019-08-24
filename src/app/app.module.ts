@@ -10,12 +10,14 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { Interceptor } from './interceptor.module';
+import { VideoPlayerComponent } from './video-player/video-player.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    VideoPlayerComponent
   ],
   imports: [
     AppRoutingModule,
