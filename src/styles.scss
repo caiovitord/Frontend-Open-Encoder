@@ -20,3 +20,8 @@ font: small-caption !important;
 .nml-1{
     margin-left: -15px;
 }
+router-outlet ~ * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }

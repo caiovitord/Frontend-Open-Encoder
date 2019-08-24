@@ -15,6 +15,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FooterComponent } from './footer/footer.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { HomeComponent } from './home/home.component';
+import { UserSendFileComponent } from './user-send-file/user-send-file.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     AppComponent,
     FileUploadComponent,
     VideoPlayerComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent,
+    UserSendFileComponent
   ],
   imports: [
     AppRoutingModule,
