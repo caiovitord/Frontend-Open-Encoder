@@ -6,3 +6,14 @@
     <h4>Seu arquivo foi enviado!</h4>
     <button (click)="onClickEncode()" >Encode</button>
 </div>
+
+
+<div *ngIf="createdEncoding">
+    <h4>Seu Encoding foi criado!</h4>
+    <h4>{{createdEncoding | json }}</h4>
+</div>
+
+<div *ngIf="encodingDataUpdate && encodingDataUpdate.length !== 0">
+    <h4>Checando os dados do seu encoding:</h4>
+    <h4 *ngFor="let enc of encodingDataUpdate; index as i" >{{i + 1}} - {{enc | json }}</h4>
+</div>

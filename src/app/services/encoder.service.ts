@@ -14,7 +14,11 @@ export class EncoderService {
   private url = APP_CONFIGURATION.serverBaseUrl;
 
   requestEncoding(fileName) {
-    return this.httpClient.post(`${this.url}/encoder`, fileName, { responseType: 'text' });
+    return this.httpClient.post(`${this.url}/encoder`, fileName);
+  }
+
+  getEncoding(encodingId) {
+    return this.httpClient.get(`${this.url}/encoder/${encodingId}`);
   }
 
 }
