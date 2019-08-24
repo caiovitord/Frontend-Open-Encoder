@@ -17,7 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HomeComponent } from './home/home.component';
 import { UserSendFileComponent } from './user-send-file/user-send-file.component';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,8 @@ import { UserSendFileComponent } from './user-send-file/user-send-file.component
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
+    MatButtonModule,
+    MatExpansionModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatCardModule,
