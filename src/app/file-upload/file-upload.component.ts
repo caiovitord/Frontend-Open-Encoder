@@ -78,8 +78,7 @@ export class FileUploadComponent implements OnInit, OnDestroy {
       this.fileInput = undefined;
       this.showSnackBar();
     }else{
-      this.stepService.setOriginalFileName(this.fileInput.name);s
-       
+      this.stepService.setOriginalFileName(this.fileInput.name);
     }
     console.log(this.fileInput);
   }
@@ -99,31 +98,11 @@ export class FileUploadComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onClickSend() {
-    this.stepService.setStep(2);
-    if (this.fileInput /*&& this.getFileExtension(this.fileInput.name)*/) {
-      const formData = new FormData();
-      formData.append('file', this.fileInput);
-      this.fileUploadService.uploadDocument(formData).subscribe((res :any) => {
-        console.log(res);
-        
-        if(res.loaded == res.total && res.partialText){
-          this.fileResult = res.partialText;
-          this.stepService.setFileResult(this.fileResult);
-          this.stepService.setStep(3);
-        } 
-      })
-    }
-  }
 
-
- 
 
 
   onClickGerarManifest() {
-    this.encoderService.gerarManifest(this.createdEncoding.encodingId).subscribe((res) => {
-      console.log(res);
-    });
+    
   }
 
   getButtonString() {

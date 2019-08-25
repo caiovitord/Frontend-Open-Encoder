@@ -22,6 +22,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { EncodingListComponent } from './encoding-list/encoding-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import {MatTableModule} from '@angular/material/table';
     VideoPlayerComponent,
     FooterComponent,
     HomeComponent,
-    UserSendFileComponent
+    UserSendFileComponent,
+    EncodingListComponent
   ],
   imports: [
     AppRoutingModule,
@@ -40,6 +43,7 @@ import {MatTableModule} from '@angular/material/table';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatTableModule,
+    MatProgressBarModule,
     MatExpansionModule,
     BrowserAnimationsModule,
     MatToolbarModule,

@@ -9,12 +9,12 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 export interface PeriodicElement {
   name: string;
   status: string;
-  progress: string;
+  progress: number;
   eta: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {eta: "", name: '', status: "", progress: '' },
+  {eta: ".", name: '.', status: ".", progress: 0 },
 ];
 
 @Component({
@@ -33,6 +33,8 @@ export class UserSendFileComponent implements OnInit {
   encodingDataUpdate: any[];
   subscription: any;
   encodingFinished: boolean;
+
+  progressBarColor = "primary";
 
   displayedColumns: string[] = ['name', 'eta' , 'status', 'progress'];
   oneEncodingTable = ELEMENT_DATA;
@@ -133,7 +135,7 @@ export class UserSendFileComponent implements OnInit {
     this.stepService.setStep(4);
 
     this.oneEncodingTable = [];
-    this.oneEncodingTable.push({name: this.stepService.getOriginalFileName(), eta: "..." , status: "Carregando...", progress: "Carregando..." })
+    this.oneEncodingTable.push({name: this.stepService.getOriginalFileName(), eta: "..." , status: "Carregando...", progress: 0 })
   }
 
   startStatusWatcher() {
@@ -148,12 +150,37 @@ export class UserSendFileComponent implements OnInit {
       if (result.status === 'FINISHED') {
         this.encodingFinished = true;
         this.subscription.unsubscribe();
+
+        this.encoderService.gerarManifest(
+          JSON.parse(localStorage.getItem('createdEncoding')).encodingId).subscribe((res) => {
+          console.log(res);
+        });
+
+        this.startStep5();
+
       }
     });
   }
 
+
+
   updateStatus(result: any) {
-    this.oneEncodingTable[0].status = result.status === "QUEUED" 
+    this.oneEncodingTable[0].status = result.status === "QUEUED" ? "Na fila" : result.status === "FINISHED" ? "Finalizado" : "Processando";
+    this.oneEncodingTable[0].progress = result.progress;
+
+    if(this.oneEncodingTable[0].progress == 100){
+      this.progressBarColor = "warn";
+    }
+
+    const min = Math.floor(result.eta / 60);
+    const seg = (result.eta - Math.floor(result.eta / 60) * 60);
+    this.oneEncodingTable[0].eta =  (min ? (min  + " min. e ") : "" ) + ( seg ? seg + " seg." : "" );
+    this.oneEncodingTable[0].eta = this.oneEncodingTable[0].eta == "" ? "Pronto"  : this.oneEncodingTable[0].eta ;
   }
+
+  startStep5() {
+    
+  }
+
 
 }
