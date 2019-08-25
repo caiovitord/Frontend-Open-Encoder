@@ -25,6 +25,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatIconModule} from '@angular/material/icon';
 import { EncodingListComponent } from './encoding-list/encoding-list.component';
+import { MatDialogModule } from '@angular/material';
+import { DeleteDialogComponent } from './encoding-list/delete-dialog/delete-dialog.component';
 
 
 @NgModule({
@@ -35,10 +37,12 @@ import { EncodingListComponent } from './encoding-list/encoding-list.component';
     FooterComponent,
     HomeComponent,
     UserStepsComponent,
-    EncodingListComponent
+    EncodingListComponent,
+    DeleteDialogComponent
   ],
   imports: [
     AppRoutingModule,
+    MatDialogModule,
     BrowserModule,
     HttpClientModule,
     MatButtonModule,
@@ -61,6 +65,7 @@ import { EncodingListComponent } from './encoding-list/encoding-list.component';
       multi: true
     },
   ],
+  entryComponents: [DeleteDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

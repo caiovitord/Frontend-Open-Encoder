@@ -252,10 +252,12 @@ export class UserStepsComponent implements OnInit {
 
   }
 
-  removeOfTable(index) {
-    this.oneEncodingTableDS.data = [].concat(this.oneEncodingTableDS.data.splice(index, 1));
-
+  removeFromTable(index) {
+    this.oneEncodingTableDS.data.splice(index, 1)
+    this.oneEncodingTableDS.data = [].concat(this.oneEncodingTableDS.data);
   }
+
+
 
   timeSince(date : any) {
     date = new Date(date)

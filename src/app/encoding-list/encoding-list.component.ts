@@ -1,10 +1,11 @@
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { EncodingProcess } from './../entities/EncodingProcess';
 import { MatTableDataSource } from '@angular/material/table';
 import { StepService } from './../services/step.service';
 import { PlayerService } from './../player.service';
 import { Component, OnInit } from '@angular/core';
 import { Encoding } from '../entities/Encoding';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 export interface PeriodicElement {
   name: string;
   status: string;
@@ -13,7 +14,7 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: Encoding[] = [
-  {name: '.', createdAt: new Date(),  outputPath: "" },
+  { name: '.', createdAt: new Date(), outputPath: "" },
 ];
 
 @Component({
@@ -25,13 +26,33 @@ export class EncodingListComponent implements OnInit {
 
   constructor(
     private playerService: PlayerService,
-    private stepService:StepService,
+    private stepService: StepService,
+    public dialog: MatDialog
 
-    ) { }
+  ) { }
 
 
-      
-  displayedColumns: string[] = ['name', 'createdAt' , 'outputPath', 'progress'];
+  openDialog(index) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      videoName: this.encodingTableDataDS.data[index].name,
+      title: 'Confirme'
+    };
+    const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if(result == true){
+        console.log("Delete ", index);
+        this.stepService.setCreatedEncodingList(this.stepService.getCreatedEncodingList().filter(e => e.outputPath !== this.encodingTableDataDS.data[index].outputPath))
+        this.stepService.removeEncodingInUserStepByIndex(index);
+        this.refresh();
+      }
+    });
+  }
+
+  displayedColumns: string[] = ['name', 'createdAt', 'outputPath', 'progress'];
   encodingTableDataDS = new MatTableDataSource<Encoding>(ELEMENT_DATA);
 
 
@@ -41,8 +62,8 @@ export class EncodingListComponent implements OnInit {
     this.encodingTableDataDS.data = [].concat(this.initList(this.stepService.getCreatedEncodingList().filter(e => e.finished)));
   }
 
-  initList(list: any[]){
-    const array =[];
+  initList(list: any[]) {
+    const array = [];
     list.forEach(e => array.push({
       createdAt: e.createdAt, name: e.fileName, outputPath: e.outputPath,
     }));
@@ -51,7 +72,7 @@ export class EncodingListComponent implements OnInit {
 
 
 
-  onClickAbrir(index){
+  onClickAbrir(index) {
     console.log(index);
     window.open(
       'https://caiovitor.com',
@@ -59,41 +80,41 @@ export class EncodingListComponent implements OnInit {
     );
   }
 
-  refresh(){
+  refresh() {
     this.encodingTableDataDS.data = [].concat(this.initList(this.stepService.getCreatedEncodingList().filter(e => e.finished)));
   }
 
-  onClickPlay(index?){
+  onClickPlay(index?) {
     console.log("PLAY INDEX", index, this.stepService.getCreatedEncodingList()[index].outputPath)
     this.playerService.playByKey(this.stepService.getCreatedEncodingList()[index].outputPath);
   }
 
-  onClickEnviarOutro(){
+  onClickEnviarOutro() {
     this.stepService.sendAnother();
   }
 
-  isStep2Or3(){
+  isStep2Or3() {
     return this.stepService.getStep() == 2;
   }
 
 
-  addToTable(){
+  addToTable() {
     this.encodingTableDataDS.data = [].concat(this.encodingTableDataDS.data).concat();
 
   }
 
-  removeOfTable(index){
-    this.encodingTableDataDS.data = [].concat(this.encodingTableDataDS.data.splice(index,1));
-    
+  removeOfTable(index) {
+    this.encodingTableDataDS.data = [].concat(this.encodingTableDataDS.data.splice(index, 1));
+
   }
 
 
-  timeSince(date : any) {
+  timeSince(date: any) {
     date = new Date(date)
     var seconds = Math.floor((new Date().getTime() - date) / 1000);
-  
+
     var interval = Math.floor(seconds / 31536000);
-  
+
     if (interval > 1) {
       return interval + " anos";
     }

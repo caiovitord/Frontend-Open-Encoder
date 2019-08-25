@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>{{modalTitle}}</h2>
+<mat-dialog-content><h4 class="content">Você está deletando o vídeo {{videoName}}</h4></mat-dialog-content>
+<mat-dialog-actions>
+<button mat-button mat-dialog-close>Cancelar</button>
+<button mat-raised-button style="background-color:OrangeRed; color:white;"  [mat-dialog-close]="true">Deletar</button>
+</mat-dialog-actions>
