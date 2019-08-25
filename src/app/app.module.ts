@@ -27,6 +27,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { EncodingListComponent } from './encoding-list/encoding-list.component';
 import { MatDialogModule } from '@angular/material';
 import { DeleteDialogComponent } from './encoding-list/delete-dialog/delete-dialog.component';
+import { UniqueLinkPlayerComponent } from './unique-link-player/unique-link-player.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { DeleteDialogComponent } from './encoding-list/delete-dialog/delete-dial
     HomeComponent,
     UserStepsComponent,
     EncodingListComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    UniqueLinkPlayerComponent
   ],
   imports: [
     AppRoutingModule,

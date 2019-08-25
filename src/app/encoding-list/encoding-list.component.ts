@@ -6,6 +6,7 @@ import { PlayerService } from './../player.service';
 import { Component, OnInit } from '@angular/core';
 import { Encoding } from '../entities/Encoding';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 export interface PeriodicElement {
   name: string;
   status: string;
@@ -27,7 +28,8 @@ export class EncodingListComponent implements OnInit {
   constructor(
     private playerService: PlayerService,
     private stepService: StepService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
 
   ) { }
 
@@ -43,7 +45,7 @@ export class EncodingListComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      if(result == true){
+      if (result == true) {
         console.log("Delete ", index);
         this.stepService.setCreatedEncodingList(this.stepService.getCreatedEncodingList().filter(e => e.outputPath !== this.encodingTableDataDS.data[index].outputPath))
         this.stepService.removeEncodingInUserStepByIndex(index);
@@ -74,10 +76,19 @@ export class EncodingListComponent implements OnInit {
 
   onClickAbrir(index) {
     console.log(index);
-    window.open(
-      'https://caiovitor.com',
-      '_blank'
-    );
+  }
+
+  openCopySnackBar(path) {
+    var config = new MatSnackBarConfig()
+    config.duration = 2500;
+    const snackBar = this.snackBar.open('Link copiado para área de transferência', 'OK', config);
+
+    
+    navigator.clipboard.writeText(("" + (window.location)).replace("steps", "") + "video/" + path  ).then(function() {
+      console.log('Async: Copying to clipboard was successful!');
+    }, function(err) {
+      console.error('Async: Could not copy text: ', err);
+    });
   }
 
   refresh() {

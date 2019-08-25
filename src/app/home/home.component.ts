@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   }
 
   sendRouteToUpload(){
-    this.router.navigate(["/upload"]);
+    this.router.navigate(["/steps"]);
   }
 
 }

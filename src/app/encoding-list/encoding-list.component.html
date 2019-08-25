@@ -18,9 +18,12 @@
             </ng-container>
 
             <ng-container matColumnDef="outputPath">
-                <th mat-header-cell *matHeaderCellDef> Link </th>
+                <th mat-header-cell *matHeaderCellDef> Link único </th>
                 <td mat-cell *matCellDef="let element; index as i">
-                    <button (click)="onClickAbrir(i)" mat-raised-button>Abrir</button>
+                    <a target="_blank" [routerLink]="['/video' , element.outputPath ]" ><button  mat-raised-button>Abrir</button></a>
+                    <button  mat-icon-button aria-label="Copiar link" (click)="openCopySnackBar(element.outputPath)" class="fab ml-1">
+                        <mat-icon style="color: black;">file_copy</mat-icon>
+                    </button>
                 </td>
 
             </ng-container>
@@ -30,6 +33,9 @@
                 <td mat-cell *matCellDef="let element; index as i">
                     <button  mat-icon-button aria-label="Play"  (click)="onClickPlay(i)" color="accent" class="fab">
                         <mat-icon>play_arrow</mat-icon>
+                    </button>
+                    <button  mat-icon-button aria-label="Compartilhar" (click)="share(i)" class="fab ml-1">
+                        <mat-icon style="color: black;">share</mat-icon>
                     </button>
                     <button  mat-icon-button aria-label="Deletar" (click)="openDialog(i)" class="fab ml-1">
                         <mat-icon style="color: red;">delete_forever</mat-icon>
