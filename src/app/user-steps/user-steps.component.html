@@ -13,7 +13,7 @@
         <button class="ml-2" mat-raised-button color="primary">SELECIONE O ARQUIVO</button>
     </mat-card>
     <mat-accordion multi="true" class="mb">
-        <mat-expansion-panel [disabled]="step != 1" #panel1 class="mb">
+        <mat-expansion-panel [disabled]="step != 1" [expanded]="step == 1" #panel1 class="mb">
             <mat-expansion-panel-header>
                 <mat-panel-title class="bigger">
                     Primeiro passo
@@ -92,7 +92,7 @@
         </mat-expansion-panel>
         <mat-expansion-panel
             [ngClass]="{'gone': (step != 4 && step != 5 && !userHasEncodings && !clickedSendAnother) || (!userHasEncodings && step == 2 && !clickedSendAnother)}"
-            class="mb" #panel3>
+            class="mb"  [expanded]="true" #panel3>
             <mat-expansion-panel-header>
                 <mat-panel-title class="bigger">
                     <div>

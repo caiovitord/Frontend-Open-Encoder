@@ -243,6 +243,7 @@ export class UserStepsComponent implements OnInit {
     this.clickedSendAnother = true;
     this.stepService.setStep(1);
     this.step = 1;
+    window.scrollTo(0,0);
   }
 
 
