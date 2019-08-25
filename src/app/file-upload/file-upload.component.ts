@@ -77,6 +77,9 @@ export class FileUploadComponent implements OnInit, OnDestroy {
     if (this.fileInput && this.fileInput.name &&  !this.fileCheck(this.getFileExtension(this.fileInput.name))) {
       this.fileInput = undefined;
       this.showSnackBar();
+    }else{
+      this.stepService.setOriginalFileName(this.fileInput.name);s
+       
     }
     console.log(this.fileInput);
   }
@@ -113,33 +116,8 @@ export class FileUploadComponent implements OnInit, OnDestroy {
     }
   }
 
-  onClickEncode() {
-    this.encoderService.requestEncoding(this.fileResult).subscribe((res: any) => {
-      this.createdEncoding = res;
 
-      localStorage.setItem('createdEncoding', JSON.stringify(res));
-      localStorage.setItem('path', res.outputPath);
-
-
-      this.encodingDataUpdate = [];
-
-      this.startStatusWatcher();
-
-    });
-  }
-  startStatusWatcher() {
-    this.subscription = timer(0, 4000).pipe(
-      switchMap(() => this.encoderService.getEncoding(this.createdEncoding.encodingId))
-    ).subscribe((result: any) => {
-      console.log(result);
-      this.encodingDataUpdate.push(result);
-
-      if (result.status === 'FINISHED') {
-        this.encodingFinished = true;
-        this.subscription.unsubscribe();
-      }
-    });
-  }
+ 
 
 
   onClickGerarManifest() {

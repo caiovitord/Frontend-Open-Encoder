@@ -19,6 +19,7 @@ export class StepService {
     let step :any  = localStorage.getItem('step');
     step = step ? Number.parseInt(step,10) : null;
     this.step = step || this.step;
+    return this.step;
   }
 
   setStep(number){
@@ -44,5 +45,13 @@ export class StepService {
 
   setUserSendFileComponent(userSendFileComponent:UserSendFileComponent){
     this.userSendFileComponent =userSendFileComponent;
+  }
+
+  setOriginalFileName(str){
+    localStorage.setItem('originalFileName', str);
+  }
+
+  getOriginalFileName(){
+    return localStorage.getItem('originalFileName');
   }
 }
