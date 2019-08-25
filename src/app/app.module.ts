@@ -16,14 +16,17 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FooterComponent } from './footer/footer.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HomeComponent } from './home/home.component';
-import { UserSendFileComponent } from './user-send-file/user-send-file.component';
+import { UserStepsComponent } from './user-steps/user-steps.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatIconModule} from '@angular/material/icon';
 import { EncodingListComponent } from './encoding-list/encoding-list.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +34,7 @@ import { EncodingListComponent } from './encoding-list/encoding-list.component';
     VideoPlayerComponent,
     FooterComponent,
     HomeComponent,
-    UserSendFileComponent,
+    UserStepsComponent,
     EncodingListComponent
   ],
   imports: [
@@ -43,6 +46,7 @@ import { EncodingListComponent } from './encoding-list/encoding-list.component';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatTableModule,
+    MatIconModule,
     MatProgressBarModule,
     MatExpansionModule,
     BrowserAnimationsModule,

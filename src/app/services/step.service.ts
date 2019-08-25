@@ -1,5 +1,6 @@
-import { UserSendFileComponent } from './../user-send-file/user-send-file.component';
+import { UserStepsComponent } from '../user-steps/user-steps.component';
 import { Injectable } from '@angular/core';
+import { EncodingListComponent } from '../encoding-list/encoding-list.component';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +9,20 @@ export class StepService {
 
 
 
+
+
+
+
   step: number = 1;
-  userSendFileComponent: any;
+  UserStepsComponent: any;
+  encodingListComponent: any;
 
   constructor() { 
 
+  }
+
+  setEncodingList(arg0: EncodingListComponent) {
+    this.encodingListComponent = arg0;
   }
 
   getStep(){
@@ -28,9 +38,9 @@ export class StepService {
 
     switch(number){
       case 2:
-       return this.userSendFileComponent.step2();
+       return this.UserStepsComponent.step2();
       case 3:
-        return  this.userSendFileComponent.step3();
+        return  this.UserStepsComponent.step3();
     }
   }
 
@@ -43,8 +53,8 @@ export class StepService {
     return localStorage.getItem('fileResult');
   }
 
-  setUserSendFileComponent(userSendFileComponent:UserSendFileComponent){
-    this.userSendFileComponent =userSendFileComponent;
+  setUserStepsComponent(UserStepsComponent:UserStepsComponent){
+    this.UserStepsComponent = UserStepsComponent;
   }
 
   setOriginalFileName(str){
@@ -53,5 +63,41 @@ export class StepService {
 
   getOriginalFileName(){
     return localStorage.getItem('originalFileName');
+  }
+
+  setUserHasEncodings(arg0: boolean) {
+    localStorage.setItem('hasencodings', arg0 ? "true" : "false");
+  }
+
+  getUserHasEncodings() {
+    return localStorage.getItem('hasencodings');
+  }
+
+
+  sendAnother() {
+    console.log("Enviar outro")
+    this.setStep(1);
+    this.UserStepsComponent.onClickEnviarOutro();
+  }
+
+  pushCreatedEncoding(created: any) {
+    var createdEncodings :any = localStorage.getItem('createdEncoding');
+
+    createdEncodings = createdEncodings ? JSON.parse(createdEncodings) : [];
+    createdEncodings.push(created);
+
+    localStorage.setItem('createdEncoding', JSON.stringify(createdEncodings));
+    if(this.encodingListComponent) this.encodingListComponent.refresh();
+  }
+
+  getCreatedEncodingList(): any[] {
+    var createdEncodings :any= localStorage.getItem('createdEncoding');
+    createdEncodings = createdEncodings ? JSON.parse(createdEncodings) : [];
+    return createdEncodings;
+  }
+
+  setCreatedEncodingList(arg0: any[]) {
+    localStorage.setItem('createdEncoding', JSON.stringify(arg0));
+    if(this.encodingListComponent) this.encodingListComponent.refresh();
   }
 }

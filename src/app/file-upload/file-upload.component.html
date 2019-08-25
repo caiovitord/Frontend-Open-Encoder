@@ -4,25 +4,3 @@
 </div>
 <input  (change)="onFileChange($event)" id="file"  enctype="multipart/form-data" class="inputfile"  name="file" type="file" #file/>
 
-
-
-<div *ngIf="fileResult">
-    <h4>Seu arquivo foi enviado!</h4>
-    <button (click)="onClickEncode()" >Encode</button>
-</div>
-
-
-<div *ngIf="createdEncoding">
-    <h4>Seu Encoding foi criado!</h4>
-    <h4>{{createdEncoding | json }}</h4>
-</div>
-
-<div *ngIf="encodingDataUpdate && encodingDataUpdate.length !== 0">
-    <h4>Checando os dados do seu encoding:</h4>
-    <h4 *ngFor="let enc of encodingDataUpdate; index as i" >{{i + 1}} - {{enc | json }}</h4>
-</div>
-
-<div *ngIf="encodingFinished">
-    <h1>Seu encoding finalizou</h1>
-    <button (click)="onClickGerarManifest()" >Gerar manifest</button>
-</div>

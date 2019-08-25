@@ -12,8 +12,7 @@
         </mat-card-content>
         <button class="ml-2" mat-raised-button color="primary">SELECIONE O ARQUIVO</button>
     </mat-card>
-
-    <mat-accordion multi="true">
+    <mat-accordion multi="true" class="mb">
         <mat-expansion-panel [disabled]="step != 1" #panel1 class="mb">
             <mat-expansion-panel-header>
                 <mat-panel-title class="bigger">
@@ -30,13 +29,13 @@
                 <li>O Open Encoder está em fase de teste e você poderá ver apenas 5 segundos do seu vídeo convertido
                 </li>
             </ul>
-            <app-file-upload></app-file-upload>
+            <app-file-upload *ngIf="step == 1 || step == 2"></app-file-upload>
 
 
 
 
         </mat-expansion-panel>
-        <mat-expansion-panel *ngIf="step == 1 || step == 4" [disabled]="true" class="mb">
+        <mat-expansion-panel *ngIf="step == 1 || step == 4 || step == 5" [disabled]="true" class="mb">
             <mat-expansion-panel-header>
                 <mat-panel-title class="bigger">
                     Segundo passo
@@ -79,7 +78,7 @@
 
 
 
-        <mat-expansion-panel *ngIf="step != 4" [disabled]="true" class="mb">
+        <mat-expansion-panel *ngIf="(step != 4 && step != 5  && !userHasEncodings && !clickedSendAnother)" [disabled]="true" class="mb">
             <mat-expansion-panel-header>
                 <mat-panel-title class="bigger">
                     <div>
@@ -91,7 +90,9 @@
                 </mat-panel-description>
             </mat-expansion-panel-header>
         </mat-expansion-panel>
-        <mat-expansion-panel [ngClass]="{'gone': step != 4}" class="mb" #panel3>
+        <mat-expansion-panel
+            [ngClass]="{'gone': (step != 4 && step != 5 && !userHasEncodings && !clickedSendAnother) || (!userHasEncodings && step == 2 && !clickedSendAnother)}"
+            class="mb" #panel3>
             <mat-expansion-panel-header>
                 <mat-panel-title class="bigger">
                     <div>
@@ -102,44 +103,49 @@
                     Aguarde o seu encoding ficar pronto
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            <table mat-table [dataSource]="oneEncodingTable" class="mat-elevation-z8">
-                    <!--- Note that these columns can be defined in any order.
-                          The actual rendered columns are set as a property on the row definition" -->
-                
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                      <th mat-header-cell *matHeaderCellDef> Nome </th>
-                      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                    </ng-container>
-                  
-                    <!-- Weight Column -->
-                    <ng-container matColumnDef="status">
-                      <th mat-header-cell *matHeaderCellDef> Status </th>
-                      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-                    </ng-container>
+            <table #processingEncodingTable mat-table [dataSource]="oneEncodingTableDS" class="mb mat-elevation-z8">
 
-                                      
-                    <ng-container matColumnDef="eta">
-                            <th mat-header-cell *matHeaderCellDef> Tempo restante </th>
-                            <td mat-cell *matCellDef="let element"> {{element.eta}} </td>
-                    </ng-container>
-                        
-                  
-                    <!-- Symbol Column -->
-                    <ng-container matColumnDef="progress">
-                      <th mat-header-cell *matHeaderCellDef> Progresso </th>
-                      <td mat-cell *matCellDef="let element"> <mat-progress-bar
-                        [value]="element.progress"
-                        [color]="progressBarColor"
-                        >
-                    </mat-progress-bar></td>
-                    </ng-container>
-                  
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                  </table>
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Nome </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="createdAt">
+                    <th mat-header-cell *matHeaderCellDef> Criado em </th>
+                    <td mat-cell *matCellDef="let element"> {{timeSince(element.createdAt) + " atrás" }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="eta">
+                    <th mat-header-cell *matHeaderCellDef> Tempo restante </th>
+                    <td mat-cell *matCellDef="let element"> {{element.eta}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="progress">
+                    <th mat-header-cell *matHeaderCellDef> Progresso </th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-progress-bar [value]="element.progress" [color]="progressBarColor">
+                        </mat-progress-bar>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <div>
+                <button mat-raised-button [disabled]="step == 2" (click)="onClickEnviarOutro()" *ngIf="!userHasEncodings" color="accent">ENVIAR OUTRO</button>
+            </div>
         </mat-expansion-panel>
     </mat-accordion>
 
-    
+    <div *ngIf="userHasEncodings" class="mb">
+        <app-encoding-list></app-encoding-list>
+        <app-video-player></app-video-player>
+    </div>
 </div>

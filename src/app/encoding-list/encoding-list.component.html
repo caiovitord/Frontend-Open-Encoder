@@ -1,1 +1,47 @@
-<p>encoding-list works!</p>
+<mat-card class="example-card mt">
+    <mat-card-header>
+        <mat-card-title>Seus vídeos</mat-card-title>
+        <mat-card-subtitle>*Esses vídeos só aparecem para você, nesse navegador.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <table  mat-table [dataSource]="encodingTableDataDS" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nome </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="createdAt">
+                <th mat-header-cell *matHeaderCellDef> Criado em </th>
+                <td mat-cell *matCellDef="let element"> {{timeSince(element.createdAt) + " atrás"}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="outputPath">
+                <th mat-header-cell *matHeaderCellDef> Link </th>
+                <td mat-cell *matCellDef="let element; index as i">
+                    <button (click)="onClickAbrir(i)" mat-raised-button>Abrir</button>
+                </td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="progress">
+                <th mat-header-cell *matHeaderCellDef> Ação </th>
+                <td mat-cell *matCellDef="let element; index as i">
+                    <button  mat-icon-button aria-label="Play"  (click)="onClickPlay(i)" color="accent" class="fab">
+                        <mat-icon>play_arrow</mat-icon>
+                    </button>
+                    <button  mat-icon-button aria-label="Deletar" class="fab ml-1">
+                        <mat-icon style="color: red;">delete_forever</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+    <mat-card-actions>
+            <button mat-raised-button (click)="onClickEnviarOutro()" [disabled]="isStep2Or3()" color="accent">ENVIAR OUTRO</button>
+    </mat-card-actions>
+</mat-card>
