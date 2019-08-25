@@ -86,7 +86,7 @@ export class EncodingListComponent implements OnInit {
 
   onClickPlay(index?) {
     console.log("PLAY INDEX", index, this.stepService.getCreatedEncodingList()[index].outputPath)
-    this.playerService.playByKey(this.stepService.getCreatedEncodingList()[index].outputPath);
+    this.playerService.playByKey(this.stepService.getCreatedEncodingList()[index].outputPath, this.stepService.getCreatedEncodingList()[index].fileName);
   }
 
   onClickEnviarOutro() {

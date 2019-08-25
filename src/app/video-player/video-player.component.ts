@@ -12,6 +12,7 @@ import * as Hls from 'hls.js';
 export class VideoPlayerComponent implements OnInit {
   hls: any;
   hls2: any;
+  videoName: any;
 
 
   constructor(private playerService: PlayerService) { }
@@ -25,9 +26,9 @@ export class VideoPlayerComponent implements OnInit {
   }
 
 
-  play(outputPath) {
+  play(outputPath, videoName) {
     console.log(outputPath);
-
+    this.videoName = videoName;
     var video: any = document.getElementById('video');
 
 

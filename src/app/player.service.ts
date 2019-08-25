@@ -13,8 +13,8 @@ export class PlayerService {
   constructor() { }
 
 
-  playByKey(outputPath: any) {
-    this.videoPlayerComponent.play(outputPath);
+  playByKey(outputPath: any, videoName) {
+    this.videoPlayerComponent.play(outputPath, videoName);
   }
 
   setPlayer(arg: VideoPlayerComponent) {
