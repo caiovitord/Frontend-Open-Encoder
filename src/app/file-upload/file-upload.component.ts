@@ -4,6 +4,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription, timer, pipe } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { StepService } from '../services/step.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -14,8 +16,42 @@ export class FileUploadComponent implements OnInit, OnDestroy {
 
   fileInput: any;
 
+  acceptedFormats = [
+    "mp4",
+    "MKV",
+    "m4a",
+    "m4v",
+    "f4v",
+    "f4a",
+    "m4b",
+    "m4r",
+    "f4b",
+    "mov",
+    "3gp",
+    "3gp2",
+    "3g2",
+    "3gpp",
+    "3gpp2",
+    "ogg",
+    "oga",
+    "ogv",
+    "ogx",
+    "wmv",
+    "wma",
+    "asf",
+    "webm",
+    "flv",
+    "AVI",
+    "HDV",
+    "MXF",
+    "ts",
+    "WAV",
+    "LXF",
+    "GXF",
+    "VOB"
+  ];
 
-  fileResult: string;
+  fileResult: any;
   createdEncoding: any;
 
 
@@ -26,17 +62,32 @@ export class FileUploadComponent implements OnInit, OnDestroy {
 
   constructor(
     private fileUploadService: FileUploadService,
-    private encoderService: EncoderService
+    private encoderService: EncoderService,
+    private stepService: StepService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
-
+    
 
   }
 
   onFileChange(event) {
     this.fileInput = event.target.files[0];
+    if (this.fileInput && this.fileInput.name &&  !this.fileCheck(this.getFileExtension(this.fileInput.name))) {
+      this.fileInput = undefined;
+      this.showSnackBar();
+    }
     console.log(this.fileInput);
+  }
+  showSnackBar() {
+    let snackBar = this.snackBar.open('Oops! Isso não me parece um vídeo', 'OK');
+
+  }
+
+  fileCheck(name: string) {
+    console.log(name);
+    return this.acceptedFormats.some(f => { return f.toUpperCase() == name.toUpperCase() });
   }
 
 
@@ -46,25 +97,31 @@ export class FileUploadComponent implements OnInit, OnDestroy {
   }
 
   onClickSend() {
+    this.stepService.setStep(2);
     if (this.fileInput /*&& this.getFileExtension(this.fileInput.name)*/) {
       const formData = new FormData();
       formData.append('file', this.fileInput);
-      this.fileUploadService.uploadDocument(formData).subscribe((res) => {
+      this.fileUploadService.uploadDocument(formData).subscribe((res :any) => {
         console.log(res);
-        this.fileResult = res;
+        
+        if(res.loaded == res.total && res.partialText){
+          this.fileResult = res.partialText;
+          this.stepService.setFileResult(this.fileResult);
+          this.stepService.setStep(3);
+        } 
       })
     }
   }
 
   onClickEncode() {
-    this.encoderService.requestEncoding(this.fileResult).subscribe((res :any) => {
+    this.encoderService.requestEncoding(this.fileResult).subscribe((res: any) => {
       this.createdEncoding = res;
-      
+
       localStorage.setItem('createdEncoding', JSON.stringify(res));
       localStorage.setItem('path', res.outputPath);
 
 
-      this.encodingDataUpdate = []; 
+      this.encodingDataUpdate = [];
 
       this.startStatusWatcher();
 
@@ -73,11 +130,11 @@ export class FileUploadComponent implements OnInit, OnDestroy {
   startStatusWatcher() {
     this.subscription = timer(0, 4000).pipe(
       switchMap(() => this.encoderService.getEncoding(this.createdEncoding.encodingId))
-    ).subscribe((result:any) => {
+    ).subscribe((result: any) => {
       console.log(result);
       this.encodingDataUpdate.push(result);
 
-      if(result.status === 'FINISHED'){
+      if (result.status === 'FINISHED') {
         this.encodingFinished = true;
         this.subscription.unsubscribe();
       }
@@ -85,9 +142,21 @@ export class FileUploadComponent implements OnInit, OnDestroy {
   }
 
 
-  onClickGerarManifest(){
-    this.encoderService.gerarManifest(this.createdEncoding.encodingId).subscribe((res)=>{
+  onClickGerarManifest() {
+    this.encoderService.gerarManifest(this.createdEncoding.encodingId).subscribe((res) => {
       console.log(res);
     });
+  }
+
+  getButtonString() {
+    if (this.fileInput)
+      return this.fileInput.name;
+    else return 'SELECIONE O ARQUIVO';
+  }
+
+
+
+  getFileExtension(filename: string): string {
+    return filename.substring(filename.lastIndexOf('.') + 1, filename.length) || filename;
   }
 }

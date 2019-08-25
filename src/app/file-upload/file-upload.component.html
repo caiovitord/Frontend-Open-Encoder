@@ -1,7 +1,10 @@
-<button  (click)="file.click()" class="ml-2" mat-raised-button color="primary">SELECIONE O ARQUIVO</button>
-<input  (change)="onFileChange($event)" id="file" accept="video/*"  enctype="multipart/form-data" class="inputfile"  name="file" type="file" #file/>
+<div >
+<button  (click)="file.click()" class="ml-2" mat-raised-button color="primary">{{getButtonString()}}</button>
+<button (click)="onClickSend()" [disabled]="!fileInput" class="ml-2" mat-raised-button color="accent">ENVIAR</button>
+</div>
+<input  (change)="onFileChange($event)" id="file"  enctype="multipart/form-data" class="inputfile"  name="file" type="file" #file/>
 
-<button (click)="onClickSend()">Send</button>
+
 
 <div *ngIf="fileResult">
     <h4>Seu arquivo foi enviado!</h4>

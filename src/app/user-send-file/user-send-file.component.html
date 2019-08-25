@@ -13,14 +13,14 @@
         <button class="ml-2" mat-raised-button color="primary">SELECIONE O ARQUIVO</button>
     </mat-card>
 
-    <mat-accordion>
-        <mat-expansion-panel class="mb">
+    <mat-accordion multi="true">
+        <mat-expansion-panel [disabled]="step != 1" #panel1 class="mb">
             <mat-expansion-panel-header>
                 <mat-panel-title class="bigger">
                     Primeiro passo
                 </mat-panel-title>
                 <mat-panel-description class="lbigger">
-                    Enviar o seu vídeo
+                    Envie o seu arquivo
                 </mat-panel-description>
 
             </mat-expansion-panel-header>
@@ -33,16 +33,42 @@
             <app-file-upload></app-file-upload>
 
         </mat-expansion-panel>
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel *ngIf="step == 1" [disabled]="true">
             <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Self aware panel
+                <mat-panel-title *ngIf="step == 1" [ngClass]="{'bigger': step == 2}">
+                    Segundo passo
                 </mat-panel-title>
-                <mat-panel-description>
-                    Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                <mat-panel-title *ngIf="step == 2">
+                    <mat-spinner></mat-spinner>
+                </mat-panel-title>
+                <mat-panel-description class="lbigger">
+                    Aguarde o envio do arquivo
                 </mat-panel-description>
             </mat-expansion-panel-header>
             <p>I'm visible because I am open</p>
+            <button>Close</button>
+        </mat-expansion-panel>
+        <mat-expansion-panel [ngClass]="{'gone': step != 2 && step != 3}" #panel2>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <div *ngIf="step == 2" class="spinner-container">
+                        <mat-spinner [diameter]="40" class="small-spinner spinner"></mat-spinner>
+                    </div>
+                    Segundo passo
+                </mat-panel-title>
+                <mat-panel-description class="lbigger">
+                    Escolha a qualidade do seu encoding
+                </mat-panel-description>
+                <h4>Basic mat-select</h4>
+                <mat-form-field>
+                    <mat-label>Favorite food</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let food of foods" [value]="food.value">
+                            {{food.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-expansion-panel-header>
         </mat-expansion-panel>
     </mat-accordion>
 </div>

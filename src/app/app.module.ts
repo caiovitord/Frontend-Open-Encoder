@@ -18,7 +18,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { HomeComponent } from './home/home.component';
 import { UserSendFileComponent } from './user-send-file/user-send-file.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     BrowserModule,
     HttpClientModule,
     MatButtonModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
     MatExpansionModule,
     BrowserAnimationsModule,
     MatToolbarModule,

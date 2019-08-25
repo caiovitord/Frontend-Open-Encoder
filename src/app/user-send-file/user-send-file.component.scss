@@ -19,3 +19,14 @@
 .mb{
     margin-bottom: 20px;
 }
+.gone{
+    display: none;
+}
+
+.spinner-container {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+}
+
+mat-spinner.small-spinner svg { width: 40px !important; height: 40px !important; }
