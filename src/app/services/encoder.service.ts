@@ -15,15 +15,19 @@ export class EncoderService {
   private url = APP_CONFIGURATION.serverBaseUrl;
 
   requestEncoding(fileName) {
-    return this.httpClient.post(`${this.url}/encoder`, fileName);
+    return this.httpClient.post(`${this.url}/encodings`, fileName);
   }
 
   getEncoding(encodingId) {
-    return this.httpClient.get(`${this.url}/encoder/${encodingId}`);
+    return this.httpClient.get(`${this.url}/encodings/${encodingId}`);
   }
 
   gerarManifest(encodingId: any) {
-    return this.httpClient.post(`${this.url}/encoder/${encodingId}/create-manifest`, {});
+    return this.httpClient.post(`${this.url}/encodings/${encodingId}/manifest`,{}, { responseType: 'text'});
+  }
+
+  delete(encodingId: any) {
+    return this.httpClient.delete(`${this.url}/encodings/${encodingId}`);
   }
 
 }

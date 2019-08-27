@@ -1,3 +1,4 @@
+import { EncoderService } from './../services/encoder.service';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { EncodingProcess } from './../entities/EncodingProcess';
 import { MatTableDataSource } from '@angular/material/table';
@@ -30,7 +31,7 @@ export class EncodingListComponent implements OnInit {
     private stepService: StepService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
-
+    private encoderService: EncoderService,
   ) { }
 
 
@@ -47,6 +48,9 @@ export class EncodingListComponent implements OnInit {
       console.log(result);
       if (result == true) {
         console.log("Delete ", index);
+        this.encoderService.delete(this.stepService.getCreatedEncodingList().find(e => e.outputPath == this.encodingTableDataDS.data[index].outputPath).encodingId).subscribe((res)=>{
+          console.log("Deletado da origem",res);
+        });
         this.stepService.setCreatedEncodingList(this.stepService.getCreatedEncodingList().filter(e => e.outputPath !== this.encodingTableDataDS.data[index].outputPath))
         this.stepService.removeEncodingInUserStepByIndex(index);
         this.refresh();

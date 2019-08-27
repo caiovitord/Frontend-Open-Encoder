@@ -51,4 +51,8 @@ export class UniqueLinkPlayerComponent implements OnInit {
       }
     }
   }
+
+  getLink(){
+    return 'https://open-encoder-output.s3.amazonaws.com/' + this.id + '/manifest.m3u8';
+  }
 }

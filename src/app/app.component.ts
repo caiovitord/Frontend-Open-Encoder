@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { trigger, transition, query, style, animate } from '@angular/animations';
 
-
 export const fadeAnimation = trigger('fadeAnimation', [
   // The '* => *' will trigger the animation to change between any two states
   transition('* => *', [

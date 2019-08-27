@@ -16,7 +16,7 @@ export class FileUploadService {
 
   uploadDocument(formData: FormData) {
     //const file:any = formData.get('file');
-    return this.httpClient.post(`${this.url}/file`, formData, { responseType: 'text', reportProgress: true,
+    return this.httpClient.post(`${this.url}/files/upload`, formData, { responseType: 'text', reportProgress: true,
       observe: 'events'
     }).pipe(map((event) => {
 

@@ -29,7 +29,8 @@ export class Interceptor implements HttpInterceptor {
   private addCORSHeader(request: HttpRequest<any>){
     return request.clone({
       setHeaders: {
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
       }
     });
   }
