@@ -33,3 +33,14 @@
 .mat-elevation-z8{
     width: 100%;
 }
+
+@media only screen and (max-width: 600px) {
+    .bigger{
+        font-size: 18px;
+    }
+  
+    .lbigger{
+      font-size: 13px;
+      margin-top: 7px;
+  }
+}

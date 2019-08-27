@@ -21,9 +21,9 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 export class UserStepsComponent implements OnInit {
 
   qualities = [
-    { text: 'Alta', value: 'h' },
-    { text: 'Média', value: 'm' },
-    { text: 'Baixa', value: 'l' },
+    { text: 'Alta', value: 'HIGH' },
+    { text: 'Média', value: 'MEDIUM' },
+    { text: 'Baixa', value: 'LOW' },
   ];
 
   createdEncoding: any;
@@ -132,7 +132,7 @@ export class UserStepsComponent implements OnInit {
 
 
 
-  onClickEncode() {
+  onClickEncode(selected) {
     this.addToTable();
 
 
@@ -141,7 +141,7 @@ export class UserStepsComponent implements OnInit {
 
     this.startStep4();
 
-    this.encoderService.requestEncoding(localStorage.getItem('fileResult')).subscribe((res: any) => {
+    this.encoderService.requestEncoding(localStorage.getItem('fileResult'), selected).subscribe((res: any) => {
       this.createdEncoding = res;
 
       this.createdEncoding.createdAt = new Date();
@@ -287,4 +287,8 @@ export class UserStepsComponent implements OnInit {
     return Math.floor(seconds) + " segundos";
   }
 
+
+  getMode(status){
+    return status== 'Carregando...' ? "indeterminate" : "determinate";
+  }
 }

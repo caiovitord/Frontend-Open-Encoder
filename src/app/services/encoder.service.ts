@@ -14,8 +14,8 @@ export class EncoderService {
 
   private url = APP_CONFIGURATION.serverBaseUrl;
 
-  requestEncoding(fileName) {
-    return this.httpClient.post(`${this.url}/encodings`, fileName);
+  requestEncoding(fileName, encodingQuality) {
+    return this.httpClient.post(`${this.url}/encodings`, { fileName, encodingQuality});
   }
 
   getEncoding(encodingId) {
