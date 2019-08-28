@@ -99,7 +99,7 @@ export class StepService {
 
   setCreatedEncodingList(arg0: any[]) {
     localStorage.setItem('createdEncoding', JSON.stringify(arg0));
-    if(this.encodingListComponent) this.encodingListComponent.refresh();
+    if(this.encodingListComponent) this.encodingListComponent.refresh(true);
   }
 
   removeEncodingInUserStepByIndex(outputPath: string) {

@@ -95,9 +95,13 @@ export class EncodingListComponent implements OnInit {
     });
   }
 
-  refresh() {
-    this.encodingTableDataDS.data = [].concat(this.initList(this.stepService.getCreatedEncodingList().filter(e => e.finished)));
+  refresh(wait?) {
+    if(wait)
+      setTimeout(() => {this.encodingTableDataDS.data = [].concat(this.initList(this.stepService.getCreatedEncodingList().filter(e => e.finished)));}, 3000);
+    else this.encodingTableDataDS.data = [].concat(this.initList(this.stepService.getCreatedEncodingList().filter(e => e.finished)));
   }
+
+  
 
   onClickPlay(index?) {
     console.log("PLAY INDEX", index, this.stepService.getCreatedEncodingList()[index].outputPath)

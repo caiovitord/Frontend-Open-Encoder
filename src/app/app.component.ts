@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { trigger, transition, query, style, animate } from '@angular/animations';
+import { Router } from '@angular/router';
 
 export const fadeAnimation = trigger('fadeAnimation', [
   // The '* => *' will trigger the animation to change between any two states
@@ -36,5 +37,12 @@ export const fadeAnimation = trigger('fadeAnimation', [
 export class AppComponent {
   title = 'mdb-angular-free';
 
-  
+
+  constructor(private router:Router){
+
+  }
+
+  onClickHome(){
+    this.router.navigate(["/"]);
+  }
 }

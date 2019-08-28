@@ -19,7 +19,7 @@ export class EncoderService {
   }
 
   getEncoding(encodingId) {
-    return this.httpClient.get(`${this.url}/encodings/${encodingId}`);
+    return this.httpClient.get(`${this.url}/encodings/${encodingId}/status`);
   }
 
   gerarManifest(encodingId: any) {
