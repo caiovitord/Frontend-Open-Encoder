@@ -9,12 +9,7 @@ A aplicação em front-end funciona mantendo uma lista de Encodings feitos no **
 
 **A sua lista de encodings é sempre mantida a não ser que os dados temporários do navegador sejam excluídos.**
 
-A aplicação tem uma funcionalidade objetiva e simples: conversão de arquivos de vídeo de um formato **não compatível** com
-os padrões da web, para um formato que seja **compatível** com os padrões da web. 
-Dessa forma, ao converter o seu vídeo para dentro dos padrões da web, você poderá, por meio do link fornecido pela API, tocar o seu vídeo em **qualquer dispositivo** que possua um navegador Web. 
-
-A proposta da aplicação foi feita pela empresa Sambatech.
-
+A aplicação tem a funcionalidade de converter arquivos de vídeo de um formato **não compatível** com os padrões da web para um formato que seja **compatível** com os padrões da web. 
 
 
 #### Link da API REST: https://api.open-encoder.caiovitor.com:8080/
@@ -42,7 +37,7 @@ Navegue pelo projeto até o arquivo **confguration.ts**, contido em src\environm
 
 Observe o código-fonte:
 ```sh
-export cnst APP_CONFIGURATION = {
+export const APP_CONFIGURATION = {
   serverBaseUrl: "https://api.open-encoder.caiovitor.com:8080" + "/api/v1"
 };
 ```
