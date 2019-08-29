@@ -1,0 +1,31 @@
+@import './custom-theme.scss';
+
+
+.ligth{
+font: small-caption !important;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.mr-1{
+    margin-right: 5px;
+}
+
+.mr-2{
+    margin-right: 10px;
+}
+
+.ml-2{
+    margin-left: 16px;
+}
+
+.nml-1{
+    margin-left: -15px;
+}
+router-outlet ~ * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }

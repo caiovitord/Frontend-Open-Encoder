@@ -1,0 +1,46 @@
+.card{
+    max-width: 85%;
+    margin: auto;
+}
+
+.router-padding{
+    padding: 1.5%;
+  }
+
+  .bigger{
+      font-size: 24px;
+  }
+
+  .lbigger{
+    font-size: 16px;
+    margin-top: 7px;
+}
+
+.mb{
+    margin-bottom: 20px;
+}
+.gone{
+    display: none;
+}
+
+.spinner-container {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+}
+
+
+.mat-elevation-z8{
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .bigger{
+        font-size: 18px;
+    }
+  
+    .lbigger{
+      font-size: 13px;
+      margin-top: 7px;
+  }
+}
